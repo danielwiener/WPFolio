@@ -101,7 +101,48 @@ register_taxonomy('media', 'post', array(
 	));
 	
 /* END Sidebars */
-	
+
+/* BEGIN Gallery Post Type*/
+add_action('init', 'my_custom_init');
+function my_custom_init() 
+{
+  $labels = array(
+    'name' => _x('Galleries', 'post type general name'),
+    'singular_name' => _x('Gallery', 'post type singular name'),
+    'add_new' => _x('Add New', 'gallery'),
+    'add_new_item' => __('Add New Gallery'),
+    'edit_item' => __('Edit Gallery'),
+    'edit' => _x('Edit', 'gallery'),
+    'new_item' => __('New Gallery'),
+    'view_item' => __('View Gallery'),
+    'search_items' => __('Search Galleries'),
+    'not_found' =>  __('No galleries found'),
+    'not_found_in_trash' => __('No galleries found in Trash'), 
+    'view' =>  __('View Gallery'),
+    'parent_item_colon' => ''
+  );
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    '_builtin' => false,
+    '_edit_link' => 'post.php?post=%d',
+    'publicly_queryable' => true,
+    'show_ui' => true, 
+    'query_var' => true, 
+    'capability_type' => 'post',
+   'taxonomies' => array( 'post_tag', 'category', 'media'),
+    'hierarchical' => false,
+    'can_export' => true,
+    'menu_position' => 5,
+    'show_in_nav_menus' => true,
+    'rewrite' => true,
+    'supports' => array('title','editor','author','thumbnail','excerpt','comments','revisions', 'custom-fields')
+  ); 
+  register_post_type('gallery',$args);
+}
+
+/* End Gallery Post Type*/
+
 /* Begin License and Name widget.*/
 
 	add_action( 'widgets_init', 'name_date_load_widgets' );

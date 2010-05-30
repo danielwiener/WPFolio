@@ -60,7 +60,19 @@
 
 <?php else: ?>
 <!-- This is NOT the blog. Run the following -->  
-	<div id="content" class="entry <?php $cat = get_the_category(); $cat = $cat[0]; echo $cat->category_nicename; ?>">  	  	 
+	<div id="content" class="entry <?php $cat = get_the_category(); $cat = $cat[0]; echo $cat->category_nicename; ?>">
+	
+	<?php $loop = new WP_Query( array( 'post_type' => array('post', 'gallery'), 'posts_per_page' => 10 ) ); ?>
+Gallery (proof of concept)
+<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+
+	<?php the_title( '<h2 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
+
+	<div class="entry-content">
+		<?php the_content(); ?>
+	</div>
+<?php endwhile; ?> 	  	 
+	  	  	 
 		<?php if (have_posts()) : ?>  		     
 			<?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>     
 			<?php /* If this is a category archive */ if (is_category()) { ?>				 		 
