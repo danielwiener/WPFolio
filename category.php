@@ -8,7 +8,8 @@
 <!-- generated with category.php -->
 
 <!-- Checking if this is the blog -->
-<?php /* If this is a category archive */ if(is_category(array('news','latest', 'updates', 'blog', 'notable'))):	 ?>	
+
+<?php /* If this is a category archive*/  if(is_category(array('news','latest', 'updates', 'blog', 'notable'))):	 ?>	
 
 <!-- This IS the blog! So run the following -->
 
@@ -16,7 +17,6 @@
 	<div id="content">
 		<div class="notable">	  	 
 	<?php if (have_posts()): ?>  
-
 						 
 		<h2 class="pagetitle"><?php echo single_cat_title(); ?></h2> <!--CATEGORY TITLE-->
 	  
@@ -49,31 +49,24 @@
 		</div>	<!-- #content -->
 			 
 		<?php else : // if there are posts ?>  	  
-			<h2 class="center">Page not found</h2> 	 
+			<h2 class="center">Page not found post loop</h2> 	 
 			
 		<?php endif; ?> 		    		   
 <!-- end post -->  
-
-
-
 
 
 <?php else: ?>
 <!-- This is NOT the blog. Run the following -->  
 	<div id="content" class="entry <?php $cat = get_the_category(); $cat = $cat[0]; echo $cat->category_nicename; ?>">
 	
-	<?php $loop = new WP_Query( array( 'post_type' => array('post', 'gallery'), 'posts_per_page' => 10 ) ); ?>
-Gallery (proof of concept)
-<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+	<?php $loop = new WP_Query( array( 'post_type' => array('gallery'), 'posts_per_page' => 10 ) ); ?>
 
-	<?php the_title( '<h2 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
 
-	<div class="entry-content">
-		<?php the_content(); ?>
-	</div>
-<?php endwhile; ?> 	  	 
+ 
 	  	  	 
-		<?php if (have_posts()) : ?>  		     
+		<?php if ($loop->have_posts()) : ?> 
+		
+	     
 			<?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>     
 			<?php /* If this is a category archive */ if (is_category()) { ?>				 		 
 				<h2 class="pagetitle"><?php echo single_cat_title(); ?></h2> 
@@ -96,7 +89,7 @@ Gallery (proof of concept)
 		
 		
 		<div class="img-container">
-		<?php while (have_posts()) : the_post(); ?> 
+		<?php while ( $loop->have_posts() ) : $loop->the_post(); ?> 
 			
 			<div class="img-frame">
 				
