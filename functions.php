@@ -143,6 +143,8 @@ function my_custom_init()
 
 /* End Gallery Post Type*/
 
+
+
 /* Begin License and Name widget.*/
 
 	add_action( 'widgets_init', 'name_date_load_widgets' );
