@@ -129,14 +129,14 @@ function my_custom_init()
     'publicly_queryable' => true,
     'show_ui' => true, 
     'query_var' => true, 
-    'capability_type' => 'post',
+    'capability_type' => 'page',
    'taxonomies' => array( 'post_tag', 'category', 'media'),
-    'hierarchical' => false,
+    'hierarchical' => true,
     'can_export' => true,
     'menu_position' => 5,
     'show_in_nav_menus' => true,
     'rewrite' => true,
-    'supports' => array('title','editor','author','thumbnail','excerpt','comments','revisions', 'custom-fields')
+    'supports' => array('title','editor','author','thumbnail','excerpt','comments','revisions', 'custom-fields', 'page-attributes')
   ); 
   register_post_type('gallery',$args);
 }
