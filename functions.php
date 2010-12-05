@@ -1,5 +1,58 @@
 <?php  
 
+/** Tell WordPress to run wpfolio_setup() when the 'after_setup_theme' hook is run. */
+add_action( 'after_setup_theme', 'wpfolio_setup' );
+
+if ( ! function_exists( 'wpfolio_setup' ) ): ?>  
+
+<?php  
+/*
+	TODO make space for header image wider so that it meets the background, may have to make another div so that it fits in with Steve's css
+	TODO style the admin page for custom header so the text of the custom header in the admin is the same as on the page.
+	TODO make some more background images, with gradients, something simple, but different to give people an idea. and make default white
+	TODO don't forget you are in git branch master - oops I was supposed to be in custom header
+*/
+// Your changeable header business starts here
+	define( 'HEADER_TEXTCOLOR', '333333' );
+	// default IMG call. 
+	define( 'HEADER_IMAGE', get_bloginfo('stylesheet_directory') . '/images/header/blank_header_gray.jpg' );
+
+	// The height and width of your custom header. You can hook into the theme's own filters to change these values.
+	define( 'HEADER_IMAGE_WIDTH', 920 );
+	define( 'HEADER_IMAGE_HEIGHT', 90 );
+
+    // Support text inside the header image.
+	define( 'NO_HEADER_TEXT', false );
+
+   // See wpfolio_header_style(), below.
+	add_custom_image_header( 'wpfolio_header_style', '' );
+
+	// ... and thus ends the changeable header business.
+
+	// Default custom headers packaged with the theme.
+	register_default_headers( array(
+		'red' => array(
+			'url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_red.jpg',
+			'thumbnail_url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_red_tn.jpg',
+			'description' => 'Blank Background - Red'
+		),
+		'blue' => array(
+			'url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_blue.jpg',
+			'thumbnail_url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_blue_tn.jpg',
+			'description' => 'Blank Background - Blue'
+		),
+		
+	) );
+         ?> 
+<?php endif; ?>
+
+<?php function wpfolio_header_style() {
+    ?><style type="text/css">
+        #header {
+            background: url(<?php header_image(); ?>);
+        }
+    </style><?php
+}
 // customize admin footer text
 function wpfolio_admin_footer() {
 	echo 'Thank you for creating with <a href="http://wordpress.org/" target="_blank">WordPress</a>. | <a href="http://codex.wordpress.org/" target="_blank">Documentation</a> | <a href="http://wordpress.org/support/forum/4" target="_blank">Feedback</a> | <a href="http://wpfolio.visitsteve.com/">Theme by WPFolio</a>';
@@ -631,7 +684,6 @@ add_action('admin_menu', 'wpfolio_add_admin');
 /*
 	TODO create an option to get rid of text on category pages - the "category | date | comments" link
 	TODO go through and figure out what are more options that people want
-	TODO create a header option
 */
 
 /**
