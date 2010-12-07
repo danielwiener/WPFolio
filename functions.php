@@ -9,12 +9,13 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
 /*
 	TODO make images with line borders, something plain but nice
 	TODO make some more background images, with gradients, something simple, but different to give people an idea. and make default white
-	TODO don't forget you are in git branch master - oops I was supposed to be in custom header
+	TODO don't forget you are in git branch master - oops I was supposed to be in custom header 
+	TODO wrap the header image function if an "if exists"
 */
 // Your changeable header business starts here
 	define( 'HEADER_TEXTCOLOR', '333333' );
 	// default IMG call. 
-	define( 'HEADER_IMAGE', get_bloginfo('stylesheet_directory') . '/images/header/blank_header_gray.jpg' );
+	define( 'HEADER_IMAGE', get_bloginfo('stylesheet_directory') . '/images/header/blank_header_white.jpg' );
 
 	// The height and width of your custom header. You can hook into the theme's own filters to change these values.
 	define( 'HEADER_IMAGE_WIDTH', 960 );
@@ -29,7 +30,12 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
 	// ... and thus ends the changeable header business.
 
 	// Default custom headers packaged with the theme.
-	register_default_headers( array(
+	register_default_headers( array( 
+		'gray' => array(
+			'url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_gray.jpg',
+			'thumbnail_url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_gray_tn.jpg',
+			'description' => 'Blank Background - Light Gray'
+		),
 		'red' => array(
 			'url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_red.jpg',
 			'thumbnail_url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_red_tn.jpg',
