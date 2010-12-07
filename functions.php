@@ -22,7 +22,7 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
 	define( 'HEADER_IMAGE_HEIGHT', 90 );
 
     // Support text inside the header image.
-	define( 'NO_HEADER_TEXT', false );
+	define( 'NO_HEADER_TEXT', true ); //made this true, not to include text in the header, may change my mind later. and may work better in future version of WPFolio or in other themes
 
    // See wpfolio_header_style(), below.
 	add_custom_image_header( 'wpfolio_header_style', 'wpfolio_admin_header_style' );

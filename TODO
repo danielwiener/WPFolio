@@ -6,3 +6,4 @@
 	TODO Change theme options so they don't apply to the title. Title done through header.
 	TODO Make default color on header options the same as the present theme options
 	TODO Make header thumbnails the same size
+	TODO Look up what adds header text color, maybe add to theme options. - and now I got rid of header text... that might be better for this since it needs to be backward compatible and you can handle it in the theme options.
