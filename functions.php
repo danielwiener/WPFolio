@@ -11,7 +11,9 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
 	TODO make some more background images, with gradients, something simple, but different to give people an idea. and make default white
 	TODO don't forget you are in git branch master - oops I was supposed to be in custom header 
 	TODO wrap the header image function if an "if exists"
-*/
+	TODO make sure to test this in an online browser first before putting into production because of header loading too soon problem
+*/  
+function wpfolio_setup() { 
 // Your changeable header business starts here
 	define( 'HEADER_TEXTCOLOR', '333333' );
 	// default IMG call. 
@@ -53,7 +55,7 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
 		),
 		
 	) );
-         ?> 
+        } ?> 
 <?php endif; ?>
 
 <?php function wpfolio_header_style() {
