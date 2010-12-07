@@ -1,0 +1,8 @@
+
+	TODO make images with line borders, something plain but nice
+	TODO make some more background images, with gradients, something simple, but different to give people an idea. and make default white
+	TODO don't forget you are in git branch master - oops I was supposed to be in custom header 
+	TODO wrap the header image function if an "if exists"
+	TODO Change theme options so they don't apply to the title. Title done through header.
+	TODO Make default color on header options the same as the present theme options
+	TODO Make header thumbnails the same size
