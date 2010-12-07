@@ -7,8 +7,7 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
 
 <?php  
 /*
-	TODO make space for header image wider so that it meets the background, may have to make another div so that it fits in with Steve's css
-	TODO style the admin page for custom header so the text of the custom header in the admin is the same as on the page.
+	TODO make images with line borders, something plain but nice
 	TODO make some more background images, with gradients, something simple, but different to give people an idea. and make default white
 	TODO don't forget you are in git branch master - oops I was supposed to be in custom header
 */
@@ -18,14 +17,14 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
 	define( 'HEADER_IMAGE', get_bloginfo('stylesheet_directory') . '/images/header/blank_header_gray.jpg' );
 
 	// The height and width of your custom header. You can hook into the theme's own filters to change these values.
-	define( 'HEADER_IMAGE_WIDTH', 920 );
+	define( 'HEADER_IMAGE_WIDTH', 960 );
 	define( 'HEADER_IMAGE_HEIGHT', 90 );
 
     // Support text inside the header image.
 	define( 'NO_HEADER_TEXT', false );
 
    // See wpfolio_header_style(), below.
-	add_custom_image_header( 'wpfolio_header_style', '' );
+	add_custom_image_header( 'wpfolio_header_style', 'wpfolio_admin_header_style' );
 
 	// ... and thus ends the changeable header business.
 
@@ -40,6 +39,11 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
 			'url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_blue.jpg',
 			'thumbnail_url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_blue_tn.jpg',
 			'description' => 'Blank Background - Blue'
+		),     
+		'gray_gradient' => array(
+			'url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_gray_gradient.jpg',
+			'thumbnail_url' => get_bloginfo('stylesheet_directory') . '/images/header/blank_header_gray_gradient_tn.jpg',
+			'description' => 'Blank Background - Blue'
 		),
 		
 	) );
@@ -52,7 +56,39 @@ if ( ! function_exists( 'wpfolio_setup' ) ): ?>
             background: url(<?php header_image(); ?>);
         }
     </style><?php
+}  
+
+
+
+if ( ! function_exists( 'wpfolio_admin_header_style' ) ) :
+/**
+ * Styles the header image displayed on the Appearance > Header admin panel.
+ *
+ * Referenced via add_custom_image_header() in wpfolio_setup().
+ *
+ * @since WPFolio 1.6
+ */
+function wpfolio_admin_header_style() {
+?>
+<style type="text/css">
+/* Shows the same border as on front end */
+#headimg {
+	height: 90px;
 }
+/* If NO_HEADER_TEXT is false, you would style the text with these selectors:   */ 
+	#headimg #name { 
+		 padding: 1.5em 30px .5em;
+		text-decoration: none;}
+	#headimg #desc {
+		padding: 0 30px .5em;
+		font-size: 15px;
+		font-weight: bold;
+		 }
+
+</style>
+<?php
+}
+endif;
 // customize admin footer text
 function wpfolio_admin_footer() {
 	echo 'Thank you for creating with <a href="http://wordpress.org/" target="_blank">WordPress</a>. | <a href="http://codex.wordpress.org/" target="_blank">Documentation</a> | <a href="http://wordpress.org/support/forum/4" target="_blank">Feedback</a> | <a href="http://wpfolio.visitsteve.com/">Theme by WPFolio</a>';
